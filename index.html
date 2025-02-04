@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Interactive</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            transition: background 0.3s;
+        }
+        .dark-theme {
+            background-color: #222;
+            color: white;
+        }
+        .container {
+            display: flex;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .sidebar h2 {
+            text-align: center;
+        }
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar nav ul li {
+            margin: 10px 0;
+        }
+        .sidebar nav ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            background: #444;
+            border-radius: 5px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        #toggle-theme {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #ff9800;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="text"] {
+            width: 98%;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Dashboard</h2>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Statistics</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+            </nav>
+            <button id="toggle-theme">Change Theme</button>
+        </aside>
+        <main class="content">
+            <h1>Welcome</h1>
+            <input type="text" id="search" placeholder="Search...">
+            <canvas id="myChart"></canvas>
+        </main>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("myChart").getContext("2d");
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["January", "February", "March", "April", "May"],
+                    datasets: [{
+                        label: "Users",
+                        data: [12, 19, 3, 5, 2],
+                        backgroundColor: "rgba(54, 162, 235, 0.6)"
+                    }]
+                }
+            });
+
+            const toggleButton = document.getElementById("toggle-theme");
+            toggleButton.addEventListener("click", function () {
+                document.body.classList.toggle("dark-theme");
+            });
+        });
+    </script>
+</body>
+</html>
